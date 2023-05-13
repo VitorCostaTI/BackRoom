@@ -36,6 +36,10 @@ const Produtos = connection.define('produtos', {
         type: Sequelize.STRING,
         allowNull:false
     },
+    status:{
+        type: Sequelize.BOOLEAN,
+        allowNull:false
+    },
     observacao:{
         type: Sequelize.TEXT,
         allowNull:false
