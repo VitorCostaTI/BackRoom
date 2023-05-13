@@ -1,27 +1,23 @@
 const Sequelize = require('sequelize');
 const connection = require('../config/database');
 
-const Departamentos = connection.define('departamentos', {
+const Estados = connection.define('estados', {
     id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-    departamento:{
-        type: Sequelize.STRING,
-        allowNull:false
-    },
-    permissoes:{
+    estado:{
         type: Sequelize.STRING,
         allowNull:false
     },
 });
 
-Departamentos.sync({force: false}).then(() => {
+Estados.sync({force: false}).then(() => {
     console.log("tabela criada com sucesso!")
 }).catch(() => {
-    console.log("falha ao criar tabela de departamentos :(")
+    console.log("falha ao criar tabela de estados :(")
 })
 
-module.exports = Departamentos;
+module.exports = Estados;

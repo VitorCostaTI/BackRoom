@@ -1,27 +1,39 @@
 const Sequelize = require('sequelize');
 const connection = require('../config/database');
 
-const Produtos = connection.define('produtos', {
+const Patrimonio = connection.define('patrimonio', {
     id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-    produto:{
+    patrimonio:{
         type: Sequelize.STRING,
         allowNull:false
     },
-    investimento:{
-        type: Sequelize.DECIMAL,
+    categoria:{
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references: {
+            model: 'categorias',
+            key: 'id'
+        }
+    },
+    monousuario:{
+        type: Sequelize.BOOLEAN,
         allowNull:false
     },
-    preco:{
-        type: Sequelize.DECIMAL,
-        allowNull:false
+    departamento:{
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references: {
+            model: 'departamentos',
+            key: 'id'
+        }
     },
-    validade:{
-        type: Sequelize.DATE,
+    local:{
+        type: Sequelize.STRING,
         allowNull:false
     },
     manutencao:{
@@ -38,14 +50,14 @@ const Produtos = connection.define('produtos', {
     },
     observacao:{
         type: Sequelize.TEXT,
-        allowNull:true
+        allowNull:false
     },
 });
 
-Produtos.sync({force: false}).then(() => {
+Patrimonio.sync({force: false}).then(() => {
     console.log("tabela criada com sucesso!")
 }).catch(() => {
-    console.log("falha ao criar tabela  de produtos :(")
+    console.log("falha ao criar tabela de patrimonio :(")
 })
 
-module.exports = Produtos;
+module.exports = Patrimonio;

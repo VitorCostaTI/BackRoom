@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const connection = require('../config/database');
 
-const Fornecedores = connection.define('fornecedores', {
+const Empresas = connection.define('empresas', {
      id: {
         allowNull: false,
         autoIncrement: true,
@@ -34,7 +34,7 @@ const Fornecedores = connection.define('fornecedores', {
     },
     numero:{
         type: Sequelize.STRING,
-        allowNull:true
+        allowNull:false
     },
     bairro:{
         type: Sequelize.STRING,
@@ -45,12 +45,20 @@ const Fornecedores = connection.define('fornecedores', {
         allowNull:false
     },
     estado:{
-        type: Sequelize.STRING,
-        allowNull:false
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references: {
+          model: 'estados', 
+          key: 'id',
+        }
     },
     pais:{
-        type: Sequelize.STRING,
-        allowNull:false
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references: {
+          model: 'pais', 
+          key: 'id',
+        }
     },
     complemento:{
         type: Sequelize.TEXT,
@@ -62,10 +70,10 @@ const Fornecedores = connection.define('fornecedores', {
     },
 });
 
-Fornecedores.sync({force: false}).then(() => {
+Empresas.sync({force: false}).then(() => {
     console.log("tabela criada com sucesso!")
 }).catch(() => {
-    console.log("falha ao criar tabela :(")
+    console.log("falha ao criar tabela de fornecedores :(")
 })
 
-module.exports = Fornecedores;
+module.exports = Empresas;
