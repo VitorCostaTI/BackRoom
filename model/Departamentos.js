@@ -2,12 +2,18 @@ const Sequelize = require('sequelize');
 const connection = require('../config/database');
 
 const Departamentos = connection.define('departamentos', {
+    id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
     departamento:{
         type: Sequelize.STRING,
         allowNull:false
     },
     permissoes:{
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING,
         allowNull:false
     },
 });

@@ -1,40 +1,52 @@
 const Sequelize = require('sequelize');
 const connection = require('../config/database');
 
-const Fornecedores = connection.define('fornecedores', {
-     id: {
+const Colaboradores = connection.define('colaboradores', {
+    id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-    empresa:{
+    photo:{
+        type: Sequelize.DataTypes.BLOB,
+        allowNull:false
+    },
+    matricula:{
         type: Sequelize.STRING,
         allowNull:false
     },
-    nomeFantasia:{
+    colaborador:{
         type: Sequelize.STRING,
         allowNull:false
     },
-    cnpj:{
+    rg:{
         type: Sequelize.STRING,
         allowNull:false
     },
-    iEStadual:{
+    cpf:{
         type: Sequelize.STRING,
-        allowNull:true
+        allowNull:false
     },
-    iFederal:{
+    departamento:{
         type: Sequelize.STRING,
-        allowNull:true
+        allowNull:false
+    },
+    pis:{
+        type: Sequelize.STRING,
+        allowNull:false
     },
     rua:{
         type: Sequelize.STRING,
         allowNull:false
     },
     numero:{
+        type: Sequelize.INTEGER,
+        allowNull:false
+    },
+    cidade:{
         type: Sequelize.STRING,
-        allowNull:true
+        allowNull:false
     },
     bairro:{
         type: Sequelize.STRING,
@@ -56,16 +68,12 @@ const Fornecedores = connection.define('fornecedores', {
         type: Sequelize.TEXT,
         allowNull:true
     },
-    status:{
-        type: Sequelize.BOOLEAN,
-        allowNull:false
-    },
 });
 
-Fornecedores.sync({force: false}).then(() => {
+Colaboradores.sync({force: false}).then(() => {
     console.log("tabela criada com sucesso!")
 }).catch(() => {
     console.log("falha ao criar tabela :(")
 })
 
-module.exports = Fornecedores;
+module.exports = Colaboradores;
