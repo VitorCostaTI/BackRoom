@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const connection = require('../config/database');
 
-const Fornecedores = connection.define('fornecedor', {
+const Fornecedores = connection.define('fornecedores', {
     empresa:{
         type: Sequelize.STRING,
         allowNull:false

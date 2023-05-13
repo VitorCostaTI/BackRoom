@@ -10,7 +10,8 @@ const bodyParser = require('body-parser');
 app.set('view engine', 'ejs');
 
 const connection = require('./config/database');
-const Fornecedores = require('./model/Fornecedores')
+
+const Models = require('./model/Models')
 
 connection.authenticate().then(() =>{
     console.log("Conexão realizada com sucesso")
