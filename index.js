@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const logo = require('./assets/js/logo');
+const logo = require('./Assets/js/logo');
 
 let port = 8080;
 
@@ -9,14 +9,14 @@ const bodyParser = require('body-parser');
 
 app.set('view engine', 'ejs');
 
-const connection = require('./config/database');
+const connection = require('./Config/database');
 
-const Models = require('./model/Models')
+const Models = require('./Model/Models')
 
 connection.authenticate().then(() =>{
-    console.log("Conexão realizada com sucesso")
+    console.log("Banco conectado com sucesso!!")
 }).catch(() => {
-    console.log("Não deu certo!!")
+    console.log("Falha ao conectar no banco de dados!!")
 })
 
 app.listen(port, ()=>{

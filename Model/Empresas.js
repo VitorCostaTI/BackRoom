@@ -1,54 +1,38 @@
 const Sequelize = require('sequelize');
-const connection = require('../config/database');
+const connection = require('../Config/database');
 
-const Colaboradores = connection.define('colaboradores', {
-    id: {
+const Empresas = connection.define('empresas', {
+     id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-    photo:{
-        type: Sequelize.DataTypes.BLOB,
+    empresa:{
+        type: Sequelize.STRING,
+        allowNull:false
+    },
+    nomeFantasia:{
+        type: Sequelize.STRING,
+        allowNull:false
+    },
+    cnpj:{
+        type: Sequelize.STRING,
+        allowNull:false
+    },
+    iEStadual:{
+        type: Sequelize.STRING,
         allowNull:true
     },
-    matricula:{
+    iFederal:{
         type: Sequelize.STRING,
-        allowNull:false
-    },
-    colaborador:{
-        type: Sequelize.STRING,
-        allowNull:false
-    },
-    rg:{
-        type: Sequelize.STRING,
-        allowNull:false
-    },
-    cpf:{
-        type: Sequelize.STRING,
-        allowNull:false
-    },
-    departamento:{
-        type: Sequelize.INTEGER,
-        allowNull:false,
-        references: {
-          model: 'departamentos', 
-          key: 'id',
-        }
-    },
-    pis:{
-        type: Sequelize.STRING,
-        allowNull:false
+        allowNull:true
     },
     rua:{
         type: Sequelize.STRING,
         allowNull:false
     },
     numero:{
-        type: Sequelize.INTEGER,
-        allowNull:false
-    },
-    cidade:{
         type: Sequelize.STRING,
         allowNull:false
     },
@@ -80,12 +64,16 @@ const Colaboradores = connection.define('colaboradores', {
         type: Sequelize.TEXT,
         allowNull:true
     },
+    status:{
+        type: Sequelize.BOOLEAN,
+        allowNull:false
+    },
 });
 
-Colaboradores.sync({force: false}).then(() => {
+Empresas.sync({force: false}).then(() => {
     console.log("tabela criada com sucesso!")
 }).catch(() => {
-    console.log("falha ao criar tabela de colaboradores :(")
+    console.log("falha ao criar tabela de fornecedores :(")
 })
 
-module.exports = Colaboradores;
+module.exports = Empresas;

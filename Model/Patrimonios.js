@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const connection = require('../config/database');
+const connection = require('../Config/database');
 
 const Patrimonio = connection.define('patrimonio', {
     id: {

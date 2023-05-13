@@ -1,29 +1,42 @@
 const Sequelize = require('sequelize');
-const connection = require('../config/database');
+const connection = require('../Config/database');
 
-const Clientes = connection.define('clientes', {
+const Colaboradores = connection.define('colaboradores', {
     id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-    cliente:{
+    photo:{
+        type: Sequelize.DataTypes.BLOB,
+        allowNull:true
+    },
+    matricula:{
         type: Sequelize.STRING,
         allowNull:false
     },
-    empresa:{
+    colaborador:{
+        type: Sequelize.STRING,
+        allowNull:false
+    },
+    rg:{
+        type: Sequelize.STRING,
+        allowNull:false
+    },
+    cpf:{
+        type: Sequelize.STRING,
+        allowNull:false
+    },
+    departamento:{
         type: Sequelize.INTEGER,
+        allowNull:false,
         references: {
-          model: 'empresas', 
+          model: 'departamentos', 
           key: 'id',
         }
     },
-    email:{
-        type: Sequelize.STRING,
-        allowNull:false
-    },
-    telefone:{
+    pis:{
         type: Sequelize.STRING,
         allowNull:false
     },
@@ -32,8 +45,12 @@ const Clientes = connection.define('clientes', {
         allowNull:false
     },
     numero:{
+        type: Sequelize.INTEGER,
+        allowNull:false
+    },
+    cidade:{
         type: Sequelize.STRING,
-        allowNull:true
+        allowNull:false
     },
     bairro:{
         type: Sequelize.STRING,
@@ -63,16 +80,12 @@ const Clientes = connection.define('clientes', {
         type: Sequelize.TEXT,
         allowNull:true
     },
-    status:{
-        type: Sequelize.BOOLEAN,
-        allowNull:false
-    },
 });
 
-Clientes.sync({force: false}).then(() => {
+Colaboradores.sync({force: false}).then(() => {
     console.log("tabela criada com sucesso!")
 }).catch(() => {
-    console.log("falha ao criar tabela de departamentos :(")
+    console.log("falha ao criar tabela de colaboradores :(")
 })
 
-module.exports = Clientes;
+module.exports = Colaboradores;

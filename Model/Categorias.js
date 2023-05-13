@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const connection = require('../config/database');
+const connection = require('../Config/database');
 
-const Pais = connection.define('pais', {
+const Categorias = connection.define('categorias', {
     id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,10 +14,10 @@ const Pais = connection.define('pais', {
     },
 });
 
-Pais.sync({force: false}).then(() => {
+Categorias.sync({force: false}).then(() => {
     console.log("tabela criada com sucesso!")
 }).catch(() => {
-    console.log("falha ao criar tabela de pais :(")
+    console.log("falha ao criar tabela de  :(")
 })
 
-module.exports = Pais;
+module.exports = Categorias;
