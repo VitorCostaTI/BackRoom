@@ -25,6 +25,19 @@ const auditoriaRoute = require('./Routes/api/AuditoriaRouter');
 
 app.use('/api/auditoria', auditoriaRoute);
 
+app.get('/', (req, res, next) => {
+    res.status(200).json(
+        {
+            Message: 'Servidor CostaTEC, iniciado com sucesso!', 
+            Info: ({
+                Desenvolvedor: 'Vitor Costa',
+                Tecnologia: 'node.JS',
+                DevOps: 'Docker',
+                Version: '1.0.0'
+            })
+    })
+})
+
 // Configurações do servidor
 
 let port = 8080;
